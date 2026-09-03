@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script> 
+    </head>
+    <body class="bg-[#E2E8F0] flex flex-col min-h-screen">
+        <div class="flex flex-col p-3 pt-1 pb-1 bg-[#2563EB] text-white">
+            <h1 class="md:text-4xl text-3xl font-serif">Detector suhu</h1>
+            <p class="text-lg font-serif md:text-xl">by gatfan</p>
+        </div>
+        <section class="flex flex-col max-h-screen">
+            <div class="flex flex-col bg-[#FFFFFF] m-6 p-4 rounded-md gap-4 shadow-lg">
+                <h2 id="suhu" class="md:text-3xl text-2xl font-serif">suhu : </h2>  
+                <h2 id="kelembapan" class="md:text-3xl text-2xl font-serif ">kelembapan : </h2>
+            </div>
+            <div class="flex flex-col items-center bg-[#FFFFFF] m-6 rounded-md shadow-lg">
+                <h3 class="md:text-3xl text-2xl font-serif">History</h3>
+                <canvas id="GrafikSuhu"></canvas>
+            </div>
+        </section>
+        <div class="bg-[#FFFFFF] flex flex-col p-2 mt-auto border-t border-slate-200">
+            <h3 class="text-xl md:text-2xl font-serif">Deskripsi projek</h3>
+            <p>Sistem ini merupakan prototipe pemantauan lingkungan berbasis Internet of Things (IoT) yang mengintegrasikan mikrokontroler ESP32 (diprogram menggunakan MicroPython) dan sensor DHT22 untuk membaca data suhu serta kelembaban udara secara akurat. Data telemetri dikirimkan secara periodik via protokol HTTP POST menuju backend API, kemudian divisualisasikan secara real-time dan historis pada dashboard ini.</p>
+        </div>
+    <script src="dashbord.js"></script>
+
+    </body>
+</html>
