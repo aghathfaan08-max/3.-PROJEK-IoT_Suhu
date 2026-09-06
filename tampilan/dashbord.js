@@ -3,7 +3,7 @@ const kelembapan = document.getElementById("kelembapan");
 
 setInterval(
     function() {
-        fetch("https://iotsuhu.vercel.app/suhu", {
+        fetch("https://backendsuhu.vercel.app/suhu", {
             method: "GET"
         })
         .then(response => response.json())
@@ -14,7 +14,7 @@ setInterval(
 
 setInterval(
     function() {
-        fetch("https://iotsuhu.vercel.app/suhu/history", {
+        fetch("https://backendsuhu.vercel.app/suhu/history", {
             method: "GET"
         })
         .then(response => response.json())
