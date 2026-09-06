@@ -3,6 +3,7 @@ import machine
 import dht
 import network
 import urequests
+from machine import WDT
 
 ap = network.WLAN(network.AP_IF)
 ap.active(True)
@@ -11,6 +12,7 @@ sensor = dht.DHT22(machine.Pin(4))
 relay = machine.Pin(13, machine.Pin.OUT)
 waktu_start = time.time()
 sudah_lapor_lonjakan = False
+wdt = WDT(timeout=10000)
 
 while True:
     sensor.measure()
@@ -18,9 +20,12 @@ while True:
         relay.off()
         if sudah_lapor_lonjakan == False:
             hasil = {"suhu": sensor.temperature(), "kelembapan": sensor.humidity()}
-            r = urequests.post("http://192.168.4.2:8000/lapor", json=hasil)
-            r.close()
-            sudah_lapor_lonjakan = True
+            try:
+                r = urequests.post("http://192.168.4.2:8000/lapor", json=hasil)
+                r.close()
+                sudah_lapor_lonjakan = True
+            except:
+                pass
             
     else:
         relay.on()
@@ -28,7 +33,11 @@ while True:
     waktu_cek = time.time()
     if waktu_cek - waktu_start >= 120:
         hasil = {"suhu": sensor.temperature(), "kelembapan": sensor.humidity()}
-        p = urequests.post("http://192.168.4.2:8000/lapor", json=hasil)
-        p.close()
-        waktu_start = time.time()
+        try:
+            p = urequests.post("http://192.168.4.2:8000/lapor", json=hasil)
+            p.close()
+            waktu_start = time.time()
+        except:
+            pass
+    wdt.feed()
     time.sleep(5)
