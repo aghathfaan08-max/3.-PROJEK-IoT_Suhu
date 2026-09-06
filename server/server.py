@@ -11,10 +11,10 @@ col = db["suhu"]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["https://iotsuhu.vercel.app", "http://localhost:5500"],
     allow_methods=["*"],
     allow_headers=["*"],
-)
+    )
 
 @app.post("/lapor")
 def lapor(data: dict):
